@@ -13,9 +13,12 @@
 	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
-			import cloud.GA.DBGATrackerManager;
+			import mx.controls.Alert;
+			import mx.managers.PopUpManager;
+			
 			import cloud.DBCloud;
 			import cloud.DBNetworkUtils;
+			import cloud.GA.DBGATrackerManager;
 			import cloud.events.DBCloudEvent;
 			import cloud.events.DBNetworkEvent;
 			
@@ -34,9 +37,6 @@
 			import model.ImportDataProxy;
 			import model.JSFLProxy;
 			import model.SettingDataProxy;
-			
-			import mx.controls.Alert;
-			import mx.managers.PopUpManager;
 			
 			import view.ExportWindow;
 			import view.ImportWindow;
@@ -84,17 +84,17 @@
 				MessageDispatcher.addEventListener(MessageDispatcher.CHANGE_ANIMATION_DATA, commandHandler);
 				MessageDispatcher.addEventListener(MessageDispatcher.CHANGE_TRANSFORM_TIMELINE_DATA, commandHandler);
 				
-				if(loaderInfo)
+				if(this.loaderInfo)
 				{
-					loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, uncaughtErrorHandler);
-					var data:String = loaderInfo.parameters["data"];
+					this.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, uncaughtErrorHandler);
+					var data:String = this.loaderInfo.parameters["data"];
 					if(data)
 					{
 						ImportCommand.instance.importFileData(false, data);
 					}
 				}
 				
-				stage.frameRate = 60;
+				this.stage.frameRate = 60;
 			}
 			
 			private function armatureViewerHandler(e:Message):void

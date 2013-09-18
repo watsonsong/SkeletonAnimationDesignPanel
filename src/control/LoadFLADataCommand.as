@@ -6,6 +6,7 @@
 	import message.MessageDispatcher;
 	
 	import model.JSFLProxy;
+	import model.SettingDataProxy;
 	import model.XMLDataProxy;
 	
 	public class LoadFLADataCommand
@@ -89,7 +90,7 @@
 				else
 				{
 					MessageDispatcher.addEventListener(JSFLProxy.GENERATE_ARMATURE, readNextArmatureHandler);
-					_jsflProxy.generateArmature(armatureName);
+					_jsflProxy.generateArmature(armatureName, SettingDataProxy.getInstance().mergeLayersInFolder);
 				}
 			}
 			else
